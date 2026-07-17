@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Giancarlos Alfaro — Desarrollador de Software</title>
+<meta name="description" content="Portafolio de Giancarlos Alfaro — Desarrollador de Software Junior. Python, SQL, desarrollo web y análisis de datos." />
+<meta property="og:title" content="Giancarlos Alfaro — Desarrollador de Software" />
+<meta property="og:description" content="Portafolio de proyectos: FarmaSystem, Validador de RUT y más." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<style>
+  :root{
+    --bg:#0d1117; --bg-soft:#161b22; --card:#161b22; --border:#232a34;
+    --text:#e6edf3; --muted:#9aa7b4; --accent:#3b82f6; --accent-2:#22d3ee;
+    --grad:linear-gradient(135deg,#3b82f6 0%,#22d3ee 100%);
+    --shadow:0 12px 40px rgba(0,0,0,.35);
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .accent{color:var(--accent-2)}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(13,17,23,.72);border-bottom:1px solid var(--border)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:800;font-size:1.15rem;letter-spacing:.5px}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--muted);font-weight:500;font-size:.95rem;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .lang-toggle{display:flex;border:1px solid var(--border);border-radius:999px;overflow:hidden}
+  .lang-toggle button{background:none;border:none;color:var(--muted);padding:5px 12px;font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s}
+  .lang-toggle button.active{background:var(--accent);color:#fff}
+  .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer}
+
+  /* HERO */
+  .hero{padding:96px 0 72px;position:relative}
+  .hero::before{content:"";position:absolute;top:-120px;right:-120px;width:420px;height:420px;
+    background:radial-gradient(circle,rgba(59,130,246,.18),transparent 70%);pointer-events:none}
+  .badge-pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg-soft);
+    border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:.85rem;color:var(--muted);margin-bottom:22px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;line-height:1.1;margin-bottom:14px}
+  .hero .role{font-size:clamp(1.05rem,3vw,1.4rem);color:var(--muted);font-weight:600;margin-bottom:20px}
+  .hero p.lead{max-width:620px;color:var(--muted);font-size:1.05rem;margin-bottom:30px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:12px;font-weight:600;font-size:.95rem;transition:transform .15s,box-shadow .2s,background .2s;cursor:pointer;border:none}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 24px rgba(59,130,246,.35)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{background:var(--bg-soft);color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-2)}
+  .socials{display:flex;gap:16px}
+  .socials a{width:42px;height:42px;display:grid;place-items:center;background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;color:var(--muted);font-size:1.1rem;transition:all .2s}
+  .socials a:hover{color:#fff;border-color:var(--accent);transform:translateY(-2px)}
+
+  /* SECTIONS */
+  section{padding:72px 0}
+  .sec-title{font-size:1.9rem;font-weight:800;margin-bottom:8px}
+  .sec-sub{color:var(--muted);margin-bottom:40px}
+  .sec-num{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.9rem;font-weight:500}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start}
+  .about-grid p{color:var(--muted);margin-bottom:16px}
+  .facts{display:flex;flex-direction:column;gap:14px}
+  .fact{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px}
+  .fact i{color:var(--accent-2);font-size:1.2rem;width:24px;text-align:center}
+  .fact .k{font-size:.78rem;color:var(--muted)}
+  .fact .v{font-weight:600;font-size:.95rem}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+  .skill-card h3{font-size:1rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .skill-card h3 i{color:var(--accent)}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{background:var(--bg-soft);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.85rem;color:var(--text);display:inline-flex;align-items:center;gap:7px}
+  .chip i{font-size:.9rem}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .proj-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;overflow:hidden}
+  .proj-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--shadow)}
+  .proj-icon{width:52px;height:52px;border-radius:14px;background:var(--grad);display:grid;place-items:center;font-size:1.5rem;color:#fff;margin-bottom:18px}
+  .proj-card h3{font-size:1.25rem;margin-bottom:10px}
+  .proj-card p{color:var(--muted);font-size:.95rem;margin-bottom:18px;flex:1}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent-2);background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);border-radius:6px;padding:3px 9px}
+  .proj-links{display:flex;gap:16px;flex-wrap:wrap}
+  .proj-links a{font-size:.9rem;font-weight:600;color:var(--accent-2);display:inline-flex;align-items:center;gap:7px;transition:color .2s}
+  .proj-links a:hover{color:#fff}
+  .ribbon{position:absolute;top:14px;right:-34px;background:var(--grad);color:#fff;font-size:.7rem;font-weight:700;padding:4px 40px;transform:rotate(45deg)}
+
+  /* CONTACT */
+  .contact{text-align:center}
+  .contact .sec-title,.contact .sec-sub{text-align:center}
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:48px 32px;max-width:640px;margin:0 auto}
+  .contact-card h3{font-size:1.5rem;margin-bottom:12px}
+  .contact-card p{color:var(--muted);margin-bottom:28px}
+  .contact-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+  footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--muted);font-size:.88rem}
+  footer .socials{justify-content:center;margin-bottom:18px}
+
+  /* animations */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:760px){
+    .nav-links{position:fixed;top:64px;left:0;right:0;background:var(--bg-soft);flex-direction:column;gap:0;padding:12px 24px;border-bottom:1px solid var(--border);transform:translateY(-140%);transition:transform .3s;height:auto}
+    .nav-links.open{transform:none}
+    .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid var(--border)}
+    .nav-links .lang-toggle{margin:12px 0}
+    .menu-btn{display:block}
+    .about-grid{grid-template-columns:1fr}
+  }
+  [data-en]{display:none}
+  html[lang="en"] [data-es]{display:none}
+  html[lang="en"] [data-en]{display:inline}
+  html[lang="en"] p[data-en],html[lang="en"] span.block[data-en]{display:block}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">Giancarlos<span>.</span>Alfaro</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" data-es>Sobre mí</a><a href="#about" data-en>About</a>
+        <a href="#skills" data-es>Habilidades</a><a href="#skills" data-en>Skills</a>
+        <a href="#projects" data-es>Proyectos</a><a href="#projects" data-en>Projects</a>
+        <a href="#contact" data-es>Contacto</a><a href="#contact" data-en>Contact</a>
+        <div class="lang-toggle">
+          <button id="btnEs" class="active" onclick="setLang('es')">ES</button>
+          <button id="btnEn" onclick="setLang('en')">EN</button>
+        </div>
+      </div>
+      <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="badge-pill"><span class="dot"></span><span data-es>Disponible para trabajo y freelance</span><span data-en>Available for work & freelance</span></span>
+    <h1><span data-es>Hola, soy </span><span data-en>Hi, I'm </span><span class="grad-text">Giancarlos Alfaro</span></h1>
+    <div class="role"><span data-es>Desarrollador de Software Junior</span><span data-en>Junior Software Developer</span></div>
+    <p class="lead">
+      <span data-es>Construyo aplicaciones web y herramientas que resuelven problemas reales, con foco en Python, SQL y desarrollo web. Me apasiona aprender y llevar ideas a producto.</span>
+      <span data-en>I build web applications and tools that solve real problems, focused on Python, SQL and web development. I'm passionate about learning and turning ideas into products.</span>
+    </p>
+    <div class="cta-row">
+      <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i><span data-es>Ver proyectos</span><span data-en>View projects</span></a>
+      <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-paper-plane"></i><span data-es>Contáctame</span><span data-en>Get in touch</span></a>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/gianca675" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/giancarlos-alfaro-echeverr%C3%ADa-9ab57b2a8" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="mailto:gianca675@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap reveal">
+    <div class="sec-num">01.</div>
+    <h2 class="sec-title"><span data-es>Sobre mí</span><span data-en>About me</span></h2>
+    <p class="sec-sub"><span data-es>Quién soy y qué hago</span><span data-en>Who I am and what I do</span></p>
+    <div class="about-grid">
+      <div>
+        <p><span data-es>Soy un desarrollador junior de Chile, orientado al backend y al desarrollo web. Disfruto convertir requerimientos en soluciones concretas: sistemas de gestión, automatizaciones y aplicaciones de datos.</span>
+        <span data-en>I'm a junior developer from Chile, oriented toward backend and web development. I enjoy turning requirements into concrete solutions: management systems, automations and data applications.</span></p>
+        <p><span data-es>Trabajo principalmente con Python y JavaScript, manejo bases de datos SQL (SQL Server, PostgreSQL, MySQL) y tengo interés especial en el análisis de datos y en la inteligencia artificial aplicada. Aprendo rápido y me tomo en serio la calidad del código.</span>
+        <span data-en>I mainly work with Python and JavaScript, handle SQL databases (SQL Server, PostgreSQL, MySQL) and have a special interest in data analysis and applied artificial intelligence. I learn fast and take code quality seriously.</span></p>
+        <p><span data-es>También ofrezco servicios freelance de desarrollo web y chatbots bajo la marca <b>Alfa Dev Studio</b>.</span>
+        <span data-en>I also offer freelance web development and chatbot services under the <b>Alfa Dev Studio</b> brand.</span></p>
+      </div>
+      <div class="facts">
+        <div class="fact"><i class="fa-solid fa-location-dot"></i><div><div class="k"><span data-es>Ubicación</span><span data-en>Location</span></div><div class="v">Chile 🇨🇱</div></div></div>
+        <div class="fact"><i class="fa-solid fa-code"></i><div><div class="k"><span data-es>Foco</span><span data-en>Focus</span></div><div class="v"><span data-es>Backend · Web · Datos</span><span data-en>Backend · Web · Data</span></div></div></div>
+        <div class="fact"><i class="fa-solid fa-briefcase"></i><div><div class="k"><span data-es>Estado</span><span data-en>Status</span></div><div class="v"><span data-es>Abierto a oportunidades</span><span data-en>Open to opportunities</span></div></div></div>
+        <div class="fact"><i class="fa-solid fa-language"></i><div><div class="k"><span data-es>Idiomas</span><span data-en>Languages</span></div><div class="v"><span data-es>Español · Inglés</span><span data-en>Spanish · English</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="sec-num">02.</div>
+    <h2 class="sec-title"><span data-es>Habilidades</span><span data-en>Skills</span></h2>
+    <p class="sec-sub"><span data-es>Tecnologías con las que trabajo</span><span data-en>Technologies I work with</span></p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3><i class="fa-solid fa-terminal"></i><span data-es>Lenguajes</span><span data-en>Languages</span></h3>
+        <div class="chips">
+          <span class="chip"><i class="fa-brands fa-python"></i>Python</span>
+          <span class="chip"><i class="fa-brands fa-js"></i>JavaScript</span>
+          <span class="chip"><i class="fa-brands fa-html5"></i>HTML5</span>
+          <span class="chip"><i class="fa-brands fa-css3-alt"></i>CSS3</span>
+          <span class="chip"><i class="fa-solid fa-database"></i>SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><i class="fa-solid fa-database"></i><span data-es>Bases de datos</span><span data-en>Databases</span></h3>
+        <div class="chips">
+          <span class="chip">SQL Server</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><i class="fa-solid fa-screwdriver-wrench"></i><span data-es>Herramientas</span><span data-en>Tools</span></h3>
+        <div class="chips">
+          <span class="chip"><i class="fa-brands fa-git-alt"></i>Git</span>
+          <span class="chip"><i class="fa-brands fa-github"></i>GitHub</span>
+          <span class="chip">VS Code</span>
+          <span class="chip">Chart.js</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><i class="fa-solid fa-lightbulb"></i><span data-es>Áreas de interés</span><span data-en>Areas of interest</span></h3>
+        <div class="chips">
+          <span class="chip"><span data-es>Análisis de datos</span><span data-en>Data analysis</span></span>
+          <span class="chip"><span data-es>IA aplicada</span><span data-en>Applied AI</span></span>
+          <span class="chip"><span data-es>Automatización</span><span data-en>Automation</span></span>
+          <span class="chip">QA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap reveal">
+    <div class="sec-num">03.</div>
+    <h2 class="sec-title"><span data-es>Proyectos</span><span data-en>Projects</span></h2>
+    <p class="sec-sub"><span data-es>Una selección de mi trabajo</span><span data-en>A selection of my work</span></p>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="ribbon"><span data-es>Destacado</span><span data-en>Featured</span></div>
+        <div class="proj-icon">💊</div>
+        <h3>FarmaSystem</h3>
+        <p><span data-es>Sistema de gestión POS e inventario para farmacias: dashboard con KPIs en tiempo real, punto de venta, control de stock multisucursal, alertas de vencimiento, historial de ventas y reportes exportables.</span>
+        <span data-en>Pharmacy POS & inventory management system: real-time KPI dashboard, point of sale, multi-branch stock control, expiry alerts, sales history and exportable reports.</span></p>
+        <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Chart.js</span></div>
+        <div class="proj-links">
+          <a href="https://gianca675.github.io/farmacia-system/farmasystem_v26_final_4.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i><span data-es>Demo en vivo</span><span data-en>Live demo</span></a>
+          <a href="https://github.com/gianca675/farmacia-system" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i><span data-es>Código</span><span data-en>Code</span></a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🆔</div>
+        <h3><span data-es>Validador de RUT</span><span data-en>Chilean RUT Validator</span></h3>
+        <p><span data-es>Calculadora y validador del dígito verificador del RUT chileno usando el algoritmo módulo 11. Escrito con programación modular, incluye validación, formateo con puntos y guion, y procesamiento por lotes.</span>
+        <span data-en>Calculator and validator for the Chilean RUT check digit using the modulo-11 algorithm. Written with modular programming: validation, formatting with dots and dash, and batch processing.</span></p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">Módulo 11</span></div>
+        <div class="proj-links">
+          <a href="https://github.com/gianca675/validador-rut-chile" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i><span data-es>Código</span><span data-en>Code</span></a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">⚡</div>
+        <h3><span data-es>Servicios Freelance</span><span data-en>Freelance Services</span></h3>
+        <p><span data-es>Bajo la marca Alfa Dev Studio desarrollo sitios web responsivos profesionales y chatbots automatizados para WhatsApp y Telegram, adaptados a las necesidades de cada negocio.</span>
+        <span data-en>Under the Alfa Dev Studio brand I build professional responsive websites and automated WhatsApp & Telegram chatbots, tailored to each business's needs.</span></p>
+        <div class="tags"><span class="tag">Web Dev</span><span class="tag">Chatbots</span><span class="tag">Automation</span></div>
+        <div class="proj-links">
+          <a href="https://www.fiverr.com/giancarlosalfar" target="_blank" rel="noopener"><i class="fa-solid fa-store"></i>Fiverr</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap reveal">
+    <div class="sec-num">04.</div>
+    <h2 class="sec-title"><span data-es>Contacto</span><span data-en>Contact</span></h2>
+    <p class="sec-sub"><span data-es>Hablemos de tu proyecto o vacante</span><span data-en>Let's talk about your project or role</span></p>
+    <div class="contact-card">
+      <h3><span data-es>¿Trabajamos juntos?</span><span data-en>Let's work together</span></h3>
+      <p><span data-es>Estoy abierto a oportunidades laborales y proyectos freelance. Responde en menos de 24 horas.</span>
+      <span data-en>I'm open to job opportunities and freelance projects. I reply within 24 hours.</span></p>
+      <div class="contact-btns">
+        <a href="mailto:gianca675@gmail.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i>Email</a>
+        <a href="https://www.linkedin.com/in/giancarlos-alfaro-echeverr%C3%ADa-9ab57b2a8" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fa-brands fa-linkedin-in"></i>LinkedIn</a>
+        <a href="https://github.com/gianca675" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fa-brands fa-github"></i>GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="socials">
+      <a href="https://github.com/gianca675" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/giancarlos-alfaro-echeverr%C3%ADa-9ab57b2a8" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="mailto:gianca675@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <div>© <span id="year"></span> Giancarlos Alfaro · <span data-es>Hecho con</span><span data-en>Built with</span> ❤️ + HTML/CSS/JS</div>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.getElementById('btnEs').classList.toggle('active', lang==='es');
+    document.getElementById('btnEn').classList.toggle('active', lang==='en');
+    try{ localStorage.setItem('lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved='es';
+    try{ saved = localStorage.getItem('lang') || 'es'; }catch(e){}
+    setLang(saved);
+  })();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  // close mobile menu on link click
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
+  });
+  // reveal on scroll
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+</script>
+</body>
+</html>
